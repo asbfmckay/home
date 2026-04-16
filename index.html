@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Good Morning, Andrew</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(160deg, #1a2030 0%, #1e2d28 40%, #1c2535 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 0 48px;
+    }
+
+    .header {
+      width: 100%;
+      max-width: 520px;
+      padding: 52px 24px 24px;
+      text-align: center;
+    }
+
+    .sun-icon {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 16px;
+    }
+
+    .greeting {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #d4904a;
+      margin-bottom: 8px;
+    }
+
+    .name {
+      font-size: 34px;
+      font-weight: 300;
+      color: #e8ede9;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+
+    .tagline {
+      font-size: 14px;
+      color: #6b7d72;
+      margin-top: 2px;
+    }
+
+    .info-bar {
+      width: 100%;
+      max-width: 520px;
+      padding: 0 20px 8px;
+    }
+
+    .info-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .date-time .date {
+      font-size: 15px;
+      font-weight: 500;
+      color: #d8e0da;
+    }
+
+    .date-time .time {
+      font-size: 13px;
+      color: #6b7d72;
+      margin-top: 2px;
+    }
+
+    .weather-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .weather-icon { font-size: 24px; }
+
+    .weather-info { text-align: right; }
+
+    .weather-temp {
+      font-size: 18px;
+      font-weight: 500;
+      color: #d8e0da;
+    }
+
+    .weather-desc {
+      font-size: 12px;
+      color: #6b7d72;
+    }
+
+    .section-label {
+      width: 100%;
+      max-width: 520px;
+      padding: 28px 24px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #4a5c50;
+    }
+
+    .links-grid {
+      width: 100%;
+      max-width: 520px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .link-card {
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 18px;
+      padding: 20px 16px 18px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .link-card:active { transform: scale(0.97); }
+
+    @media (hover: hover) {
+      .link-card:hover {
+        background: rgba(255,255,255,0.1);
+        border-color: rgba(255,255,255,0.18);
+        transform: translateY(-2px);
+      }
+    }
+
+    .link-card.live {
+      border-color: rgba(212,144,74,0.35);
+    }
+
+    @media (hover: hover) {
+      .link-card.live:hover {
+        background: rgba(212,144,74,0.08);
+        border-color: rgba(212,144,74,0.55);
+        transform: translateY(-2px);
+      }
+    }
+
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #d8e0da;
+      line-height: 1.3;
+    }
+
+    .icon-amber  { background: rgba(212,144,74,0.18); }
+    .icon-green  { background: rgba(80,160,100,0.18); }
+    .icon-blue   { background: rgba(80,130,200,0.18); }
+    .icon-rose   { background: rgba(200,90,110,0.18); }
+    .icon-teal   { background: rgba(60,160,150,0.18); }
+    .icon-purple { background: rgba(130,100,210,0.18); }
+
+    .badge {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: #4a5c50;
+      background: rgba(255,255,255,0.06);
+      border-radius: 6px;
+      padding: 2px 7px;
+      margin-top: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <svg class="sun-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="28" cy="28" r="11" fill="#d4904a" />
+      <g stroke="#d4904a" stroke-width="2.5" stroke-linecap="round">
+        <line x1="28" y1="7"  x2="28" y2="13"/>
+        <line x1="28" y1="43" x2="28" y2="49"/>
+        <line x1="7"  y1="28" x2="13" y2="28"/>
+        <line x1="43" y1="28" x2="49" y2="28"/>
+        <line x1="14.5" y1="14.5" x2="18.5" y2="18.5"/>
+        <line x1="37.5" y1="37.5" x2="41.5" y2="41.5"/>
+        <line x1="41.5" y1="14.5" x2="37.5" y2="18.5"/>
+        <line x1="18.5" y1="37.5" x2="14.5" y2="41.5"/>
+      </g>
+    </svg>
+    <p class="greeting">Good morning</p>
+    <h1 class="name">Welcome, Andrew</h1>
+    <p class="tagline">Make today count.</p>
+  </div>
+
+  <div class="info-bar">
+    <div class="info-card">
+      <div class="date-time">
+        <div class="date" id="js-date">Thursday, 16 April 2026</div>
+        <div class="time" id="js-time">—</div>
+      </div>
+      <div class="weather-right">
+        <div class="weather-icon" id="js-wx-icon">☁️</div>
+        <div class="weather-info">
+          <div class="weather-temp" id="js-wx-temp">—°C</div>
+          <div class="weather-desc">Melbourne</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Your Programs</div>
+
+  <div class="links-grid">
+
+    <a class="link-card" href="#" onclick="return false;">
+      <div class="card-icon icon-amber">🌅</div>
+      <div>
+        <div class="card-title">Miracle Morning</div>
+        <div class="badge">Coming soon</div>
+      </div>
+    </a>
+
+    <a class="link-card" href="#" onclick="return false;">
+      <div class="card-icon icon-teal">🎯</div>
+      <div>
+        <div class="card-title">Goal Tracker</div>
+        <div class="badge">Coming soon</div>
+      </div>
+    </a>
+
+    <a class="link-card live" href="https://asbfmckay.github.io/workout-app/">
+      <div class="card-icon icon-green">💪</div>
+      <div>
+        <div class="card-title">Workout Program</div>
+      </div>
+    </a>
+
+    <a class="link-card" href="#" onclick="return false;">
+      <div class="card-icon icon-rose">📚</div>
+      <div>
+        <div class="card-title">Reading Program</div>
+        <div class="badge">Coming soon</div>
+      </div>
+    </a>
+
+    <a class="link-card" href="#" onclick="return false;">
+      <div class="card-icon icon-blue">🧠</div>
+      <div>
+        <div class="card-title">Development Program</div>
+        <div class="badge">Coming soon</div>
+      </div>
+    </a>
+
+    <a class="link-card" href="#" onclick="return false;">
+      <div class="card-icon icon-teal">🌿</div>
+      <div>
+        <div class="card-title">Health Program</div>
+        <div class="badge">Coming soon</div>
+      </div>
+    </a>
+
+    <a class="link-card" href="#" onclick="return false;">
+      <div class="card-icon icon-purple">✨</div>
+      <div>
+        <div class="card-title">PPP</div>
+        <div class="badge">Coming soon</div>
+      </div>
+    </a>
+
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      document.getElementById('js-date').textContent =
+        days[now.getDay()] + ', ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+      const h = now.getHours(), m = now.getMinutes();
+      const ampm = h >= 12 ? 'pm' : 'am';
+      const h12 = h % 12 || 12;
+      document.getElementById('js-time').textContent =
+        h12 + ':' + String(m).padStart(2,'0') + ' ' + ampm + ' · Melbourne';
+    }
+    updateClock();
+    setInterval(updateClock, 30000);
+
+    async function loadWeather() {
+      try {
+        const url = 'https://api.open-meteo.com/v1/forecast?latitude=-37.8136&longitude=144.9631&current=temperature_2m,weathercode&temperature_unit=celsius&timezone=Australia%2FMelbourne';
+        const res = await fetch(url);
+        const d = await res.json();
+        const temp = Math.round(d.current.temperature_2m);
+        const code = d.current.weathercode;
+        const icons = {
+          0:'☀️',1:'🌤️',2:'⛅',3:'☁️',
+          45:'🌫️',48:'🌫️',
+          51:'🌦️',53:'🌦️',55:'🌧️',
+          61:'🌧️',63:'🌧️',65:'🌧️',
+          71:'🌨️',73:'🌨️',75:'🌨️',
+          80:'🌦️',81:'🌦️',82:'🌧️',
+          95:'⛈️',96:'⛈️',99:'⛈️'
+        };
+        document.getElementById('js-wx-icon').textContent = icons[code] || '🌡️';
+        document.getElementById('js-wx-temp').textContent = temp + '°C';
+      } catch(e) {
+        document.getElementById('js-wx-temp').textContent = '—';
+      }
+    }
+    loadWeather();
+
+    const hour = new Date().getHours();
+    const greetEl = document.querySelector('.greeting');
+    if (hour >= 12 && hour < 17) greetEl.textContent = 'Good afternoon';
+    else if (hour >= 17) greetEl.textContent = 'Good evening';
+  </script>
+</body>
+</html>
