@@ -4,221 +4,287 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Good Morning, Andrew</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <meta name="theme-color" content="#fff8f0">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
- <link rel="icon" type="image/png" href="/favicon.png">
- <link rel="apple-touch-icon" href="/favicon.png">
- <meta name="theme-color" content="#0f1216">
-  
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sun:       #f5a623;
+      --sun-light: #fff3dc;
+      --sun-mid:   #fde8b4;
+      --sun-text:  #b36b00;
+      --bg:        #fffaf4;
+      --bg-card:   #ffffff;
+      --border:    #ede8e0;
+      --border-md: #e0d9ce;
+      --text-h:    #1a1612;
+      --text-body: #3d3530;
+      --text-dim:  #9b9088;
+      --green:     #2d8a4e;
+      --green-bg:  #eef8f2;
+      --green-bdr: #b6dfc5;
+      --teal-bg:   #edf8f6;
+      --teal-bdr:  #bfe8dd;
+      --blue-bg:   #eef3fc;
+      --blue-bdr:  #c7d8f4;
+      --purple-bg: #f0eefb;
+      --purple-bdr:#d8d0ef;
+      --rose-bg:   #fdeef0;
+      --rose-bdr:  #f1c8cf;
+      --amber:     #b36b00;
+      --amber-bdr: #f3c97a;
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       min-height: 100vh;
-      background: linear-gradient(160deg, #1a2030 0%, #1e2d28 40%, #1c2535 100%);
+      background: var(--bg);
+      color: var(--text-body);
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 0 0 48px;
+      padding: 0 0 60px;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .header {
       width: 100%;
       max-width: 520px;
-      padding: 52px 24px 24px;
+      padding: 44px 24px 20px;
       text-align: center;
     }
 
-    .sun-icon {
-      width: 52px;
-      height: 52px;
+    .sun-wrap {
+      width: 64px;
+      height: 64px;
+      background: var(--sun-light);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin: 0 auto 16px;
     }
 
-    .greeting {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #d4904a;
-      margin-bottom: 8px;
+      color: var(--sun);
+      margin-bottom: 6px;
     }
 
-    .name {
-      font-size: 34px;
-      font-weight: 300;
-      color: #e8ede9;
-      letter-spacing: -0.5px;
-      margin-bottom: 6px;
+    .title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-h);
+      letter-spacing: -0.4px;
+      margin-bottom: 4px;
     }
 
     .tagline {
       font-size: 14px;
-      color: #6b7d72;
-      margin-top: 2px;
+      color: var(--text-dim);
     }
 
     .info-bar {
       width: 100%;
       max-width: 520px;
-      padding: 0 20px 8px;
+      padding: 0 16px;
     }
 
     .info-card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      padding: 14px 20px;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 16px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 14px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
     }
 
     .date-time .date {
       font-size: 15px;
-      font-weight: 500;
-      color: #d8e0da;
+      font-weight: 600;
+      color: var(--text-h);
     }
 
     .date-time .time {
       font-size: 13px;
-      color: #6b7d72;
-      margin-top: 2px;
+      color: var(--text-dim);
+      margin-top: 3px;
     }
 
     .weather-right {
       display: flex;
       align-items: center;
       gap: 10px;
+      text-align: right;
     }
 
-    .weather-icon { font-size: 24px; }
-
-    .weather-info { text-align: right; }
+    .weather-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: var(--sun-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
 
     .weather-temp {
       font-size: 18px;
-      font-weight: 500;
-      color: #d8e0da;
+      font-weight: 600;
+      color: var(--text-h);
     }
 
     .weather-desc {
       font-size: 12px;
-      color: #6b7d72;
+      color: var(--text-dim);
+      margin-top: 2px;
     }
 
     .section-label {
       width: 100%;
       max-width: 520px;
-      padding: 28px 24px 12px;
+      padding: 26px 20px 10px;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: #4a5c50;
+      color: var(--text-dim);
     }
 
     .links-grid {
       width: 100%;
       max-width: 520px;
-      padding: 0 20px;
+      padding: 0 16px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
 
-    .link-card {
-      background: rgba(255,255,255,0.055);
-      border: 1px solid rgba(255,255,255,0.09);
+    .app-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
       border-radius: 18px;
-      padding: 20px 16px 18px;
+      padding: 16px;
       text-decoration: none;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 10px;
-      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+      gap: 14px;
+      min-height: 132px;
+      transition: transform 0.13s ease, border-color 0.13s ease, box-shadow 0.13s ease;
       cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
+      color: inherit;
     }
 
-    .link-card:active { transform: scale(0.97); }
+    .app-card:active { transform: scale(0.98); }
 
     @media (hover: hover) {
-      .link-card:hover {
-        background: rgba(255,255,255,0.1);
-        border-color: rgba(255,255,255,0.18);
-        transform: translateY(-2px);
+      .app-card:hover {
+        border-color: var(--border-md);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        transform: translateY(-1px);
       }
     }
 
-    .link-card.live {
-      border-color: rgba(212,144,74,0.35);
-    }
+    .app-card.live-amber { border-color: var(--amber-bdr); }
+    .app-card.live-green { border-color: var(--green-bdr); }
 
     @media (hover: hover) {
-      .link-card.live:hover {
-        background: rgba(212,144,74,0.08);
-        border-color: rgba(212,144,74,0.55);
-        transform: translateY(-2px);
-      }
+      .app-card.live-amber:hover { border-color: var(--sun); }
+      .app-card.live-green:hover { border-color: var(--green); }
     }
 
-    .card-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
+    .card-pill {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .pill-amber  { background: var(--sun-light); }
+    .pill-green  { background: var(--green-bg); }
+    .pill-teal   { background: var(--teal-bg); }
+    .pill-blue   { background: var(--blue-bg); }
+    .pill-rose   { background: var(--rose-bg); }
+    .pill-purple { background: var(--purple-bg); }
+
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 100%;
     }
 
     .card-title {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 600;
-      color: #d8e0da;
-      line-height: 1.3;
+      color: var(--text-h);
+      line-height: 1.35;
     }
 
-    .icon-amber  { background: rgba(212,144,74,0.18); }
-    .icon-green  { background: rgba(80,160,100,0.18); }
-    .icon-blue   { background: rgba(80,130,200,0.18); }
-    .icon-rose   { background: rgba(200,90,110,0.18); }
-    .icon-teal   { background: rgba(60,160,150,0.18); }
-    .icon-purple { background: rgba(130,100,210,0.18); }
+    .card-sub {
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.45;
+    }
 
-    .badge {
-      font-size: 10px;
+    .card-badge {
+      margin-top: auto;
+      font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.06em;
-      color: #4a5c50;
-      background: rgba(255,255,255,0.06);
-      border-radius: 6px;
-      padding: 2px 7px;
-      margin-top: 2px;
+      padding: 3px 8px;
+      border-radius: 20px;
+      background: #f0f0f4;
+      color: var(--text-dim);
+    }
+
+    .card-badge.live-amber {
+      background: var(--sun-light);
+      color: var(--amber);
+    }
+
+    .card-badge.live-green {
+      background: var(--green-bg);
+      color: var(--green);
     }
   </style>
 </head>
 <body>
 
   <div class="header">
-    <svg class="sun-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="28" cy="28" r="11" fill="#d4904a" />
-      <g stroke="#d4904a" stroke-width="2.5" stroke-linecap="round">
-        <line x1="28" y1="7"  x2="28" y2="13"/>
-        <line x1="28" y1="43" x2="28" y2="49"/>
-        <line x1="7"  y1="28" x2="13" y2="28"/>
-        <line x1="43" y1="28" x2="49" y2="28"/>
-        <line x1="14.5" y1="14.5" x2="18.5" y2="18.5"/>
-        <line x1="37.5" y1="37.5" x2="41.5" y2="41.5"/>
-        <line x1="41.5" y1="14.5" x2="37.5" y2="18.5"/>
-        <line x1="18.5" y1="37.5" x2="14.5" y2="41.5"/>
-      </g>
-    </svg>
-    <p class="greeting">Good morning</p>
-    <h1 class="name">Welcome, Andrew</h1>
+    <div class="sun-wrap">
+      <svg width="36" height="36" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="28" cy="28" r="11" fill="#f5a623"/>
+        <g stroke="#f5a623" stroke-width="2.5" stroke-linecap="round">
+          <line x1="28" y1="7"  x2="28" y2="13"/>
+          <line x1="28" y1="43" x2="28" y2="49"/>
+          <line x1="7"  y1="28" x2="13" y2="28"/>
+          <line x1="43" y1="28" x2="49" y2="28"/>
+          <line x1="14.5" y1="14.5" x2="18.5" y2="18.5"/>
+          <line x1="37.5" y1="37.5" x2="41.5" y2="41.5"/>
+          <line x1="41.5" y1="14.5" x2="37.5" y2="18.5"/>
+          <line x1="18.5" y1="37.5" x2="14.5" y2="41.5"/>
+        </g>
+      </svg>
+    </div>
+    <p class="eyebrow" id="js-greeting">Good morning</p>
+    <h1 class="title">Welcome, Andrew</h1>
     <p class="tagline">Make today count.</p>
   </div>
 
@@ -230,7 +296,7 @@
       </div>
       <div class="weather-right">
         <div class="weather-icon" id="js-wx-icon">☁️</div>
-        <div class="weather-info">
+        <div>
           <div class="weather-temp" id="js-wx-temp">—°C</div>
           <div class="weather-desc">Melbourne</div>
         </div>
@@ -241,62 +307,69 @@
   <div class="section-label">Your Programs</div>
 
   <div class="links-grid">
-
-    <a class="link-card" href="#" onclick="return false;">
-      <div class="card-icon icon-amber">🌅</div>
-      <div>
+    <a class="app-card live-amber" href="https://asbfmckay.github.io/miracle-morning/">
+      <div class="card-pill pill-amber">🌅</div>
+      <div class="card-body">
         <div class="card-title">Miracle Morning</div>
-        <div class="badge">Coming soon</div>
+        <div class="card-sub">SAVERS session, timer, affirmations and morning flow.</div>
       </div>
+      <span class="card-badge live-amber"></span>
     </a>
 
-    <a class="link-card" href="#" onclick="return false;">
-      <div class="card-icon icon-teal">🎯</div>
-      <div>
+    <a class="app-card" href="#" onclick="return false;">
+      <div class="card-pill pill-teal">🎯</div>
+      <div class="card-body">
         <div class="card-title">Goal Tracker</div>
-        <div class="badge">Coming soon</div>
+        <div class="card-sub">Track progress and keep your priorities in view.</div>
       </div>
+      <span class="card-badge">Coming soon</span>
     </a>
 
-    <a class="link-card live" href="https://asbfmckay.github.io/workout-app/">
-      <div class="card-icon icon-green">💪</div>
-      <div>
+    <a class="app-card live-green" href="https://asbfmckay.github.io/workout-app/">
+      <div class="card-pill pill-green">💪</div>
+      <div class="card-body">
         <div class="card-title">Workout Program</div>
+        <div class="card-sub">Training sessions, movement plan and daily consistency.</div>
       </div>
+      <span class="card-badge live-green"></span>
     </a>
 
-    <a class="link-card" href="#" onclick="return false;">
-      <div class="card-icon icon-rose">📚</div>
-      <div>
+    <a class="app-card" href="#" onclick="return false;">
+      <div class="card-pill pill-rose">📚</div>
+      <div class="card-body">
         <div class="card-title">Reading Program</div>
-        <div class="badge">Coming soon</div>
+        <div class="card-sub">Reading lists, notes and structured growth.</div>
       </div>
+      <span class="card-badge">Coming soon</span>
     </a>
 
-    <a class="link-card" href="#" onclick="return false;">
-      <div class="card-icon icon-blue">🧠</div>
-      <div>
+    <a class="app-card" href="#" onclick="return false;">
+      <div class="card-pill pill-blue">🧠</div>
+      <div class="card-body">
         <div class="card-title">Development Program</div>
-        <div class="badge">Coming soon</div>
+        <div class="card-sub">Personal development and focused improvement.</div>
       </div>
+      <span class="card-badge">Coming soon</span>
     </a>
 
-    <a class="link-card" href="#" onclick="return false;">
-      <div class="card-icon icon-teal">🌿</div>
-      <div>
+    <a class="app-card" href="#" onclick="return false;">
+      <div class="card-pill pill-teal">🌿</div>
+      <div class="card-body">
         <div class="card-title">Health Program</div>
-        <div class="badge">Coming soon</div>
+        <div class="card-sub">Wellbeing habits, routines and health tracking.</div>
       </div>
+      <span class="card-badge">Coming soon</span>
     </a>
 
-    <a class="link-card" href="#" onclick="return false;">
-      <div class="card-icon icon-purple">✨</div>
-      <div>
+    <a class="app-card" href="#" onclick="return false;">
+      <div class="card-pill pill-purple">✨</div>
+      <div class="card-body">
         <div class="card-title">PPP</div>
-        <div class="badge">Coming soon</div>
+        
+        <div class="card-sub">Planning, reflection and purposeful daily action.</div>
       </div>
+      <span class="card-badge">Coming soon</span>
     </a>
-
   </div>
 
   <script>
@@ -311,6 +384,11 @@
       const h12 = h % 12 || 12;
       document.getElementById('js-time').textContent =
         h12 + ':' + String(m).padStart(2,'0') + ' ' + ampm + ' · Melbourne';
+
+      const greetEl = document.getElementById('js-greeting');
+      if (h >= 12 && h < 17) greetEl.textContent = 'Good afternoon';
+      else if (h >= 17) greetEl.textContent = 'Good evening';
+      else greetEl.textContent = 'Good morning';
     }
     updateClock();
     setInterval(updateClock, 30000);
@@ -338,11 +416,6 @@
       }
     }
     loadWeather();
-
-    const hour = new Date().getHours();
-    const greetEl = document.querySelector('.greeting');
-    if (hour >= 12 && hour < 17) greetEl.textContent = 'Good afternoon';
-    else if (hour >= 17) greetEl.textContent = 'Good evening';
   </script>
 </body>
 </html>
