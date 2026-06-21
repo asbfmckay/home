@@ -1,421 +1,299 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-AU">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Good Morning, Andrew</title>
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/favicon.png">
-  <meta name="theme-color" content="#fff8f0">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#FFF3E4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFF8F0;
+    --paper-warm:#FFF3E4;
+    --peach:#FFE3C4;
+    --apricot:#FFD0A0;
+    --gold:#F5A623;
+    --terra:#E07A3E;
+    --ink:#3A2B22;
+    --muted:#9A8472;
+    --line:rgba(58,43,34,.10);
+    --card:#FFFDFA;
+    --shadow:18px 22px 50px -28px rgba(120,72,24,.45);
+    --shadow-hover:22px 30px 60px -26px rgba(120,72,24,.55);
+    /* owners */
+    --asm:#D9881A;      --asm-bg:rgba(245,166,35,.14);
+    --bfm:#D85F8C;      --bfm-bg:rgba(224,105,154,.14);
+    --shared:#1E9E86;   --shared-bg:rgba(31,169,134,.14);
+  }
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:"Poppins",system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.5;
+    min-height:100dvh;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
 
-    :root {
-      --sun:       #f5a623;
-      --sun-light: #fff3dc;
-      --sun-mid:   #fde8b4;
-      --sun-text:  #b36b00;
-      --bg:        #fffaf4;
-      --bg-card:   #ffffff;
-      --border:    #ede8e0;
-      --border-md: #e0d9ce;
-      --text-h:    #1a1612;
-      --text-body: #3d3530;
-      --text-dim:  #9b9088;
-      --green:     #2d8a4e;
-      --green-bg:  #eef8f2;
-      --green-bdr: #b6dfc5;
-      --teal-bg:   #edf8f6;
-      --teal-bdr:  #bfe8dd;
-      --blue-bg:   #eef3fc;
-      --blue-bdr:  #c7d8f4;
-      --purple-bg: #f0eefb;
-      --purple-bdr:#d8d0ef;
-      --rose-bg:   #fdeef0;
-      --rose-bdr:  #f1c8cf;
-      --amber:     #b36b00;
-      --amber-bdr: #f3c97a;
-    }
+  /* ---------- Dawn hero ---------- */
+  .dawn{
+    position:relative;
+    padding:clamp(40px,9vw,80px) 22px clamp(26px,5vw,40px);
+    background:
+      radial-gradient(120% 90% at 50% -18%, var(--apricot) 0%, var(--peach) 32%, var(--paper-warm) 60%, var(--paper) 100%);
+    overflow:hidden;
+    text-align:center;
+  }
+  .sun{
+    position:absolute;
+    top:-14%; left:50%;
+    width:min(420px,72vw); aspect-ratio:1;
+    transform:translate(-50%,0);
+    background:radial-gradient(circle at 50% 50%,
+        rgba(255,221,158,.95) 0%,
+        rgba(255,201,120,.55) 32%,
+        rgba(255,201,120,0) 68%);
+    filter:blur(6px);
+    pointer-events:none;
+    animation:rise 1.5s cubic-bezier(.16,.84,.32,1) both, breathe 8s ease-in-out 1.6s infinite;
+  }
+  @keyframes rise{from{opacity:0;transform:translate(-50%,42px) scale(.9)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
+  @keyframes breathe{0%,100%{filter:blur(6px) brightness(1)}50%{filter:blur(10px) brightness(1.06)}}
 
-    body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      min-height: 100vh;
-      background: var(--bg);
-      color: var(--text-body);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 0 60px;
-      -webkit-tap-highlight-color: transparent;
-    }
+  .hero{position:relative;max-width:760px;margin:0 auto}
+  .greeting{
+    font-family:"Fraunces",serif;
+    font-weight:600;
+    font-size:clamp(2.4rem,9vw,3.6rem);
+    line-height:1.02;
+    letter-spacing:-.02em;
+    color:var(--ink);
+    animation:fadeUp .8s ease both .15s;
+  }
+  .subline{
+    margin-top:.5rem;
+    font-size:clamp(1rem,3.5vw,1.12rem);
+    color:var(--terra);
+    font-weight:500;
+    animation:fadeUp .8s ease both .25s;
+  }
+  .meta{
+    margin-top:1.25rem;
+    display:inline-flex;align-items:center;gap:.7rem;flex-wrap:wrap;justify-content:center;
+    font-size:.92rem;color:var(--muted);
+    animation:fadeUp .8s ease both .35s;
+  }
+  .meta .pill{
+    display:inline-flex;align-items:center;gap:.4rem;
+    background:rgba(255,255,255,.6);
+    border:1px solid var(--line);
+    padding:.4rem .8rem;border-radius:999px;
+    backdrop-filter:blur(6px);
+  }
+  .meta .pill b{font-weight:600;color:var(--ink)}
 
-    .header {
-      width: 100%;
-      max-width: 520px;
-      padding: 44px 24px 20px;
-      text-align: center;
-    }
+  /* ---------- Programs ---------- */
+  main{max-width:760px;margin:0 auto;padding:clamp(20px,5vw,34px) 22px clamp(48px,9vw,72px)}
+  .section-label{
+    font-family:"Poppins",sans-serif;
+    font-size:.74rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);
+    display:flex;align-items:center;gap:.85rem;
+    margin-bottom:1.3rem;
+  }
+  .section-label::after{content:"";flex:1;height:1px;background:var(--line)}
 
-    .sun-wrap {
-      width: 64px;
-      height: 64px;
-      background: var(--sun-light);
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 16px;
-    }
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,2.6vw,18px)}
+  @media (max-width:540px){.grid{grid-template-columns:1fr}}
 
-    .eyebrow {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--sun);
-      margin-bottom: 6px;
-    }
+  .tile{
+    position:relative;
+    display:flex;flex-direction:column;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:18px 18px 16px;
+    text-decoration:none;color:inherit;
+    box-shadow:var(--shadow);
+    transition:transform .28s cubic-bezier(.2,.8,.3,1), box-shadow .28s, border-color .28s;
+    min-height:158px;
+    animation:fadeUp .7s ease both;
+    overflow:hidden;
+  }
+  .tile::before{
+    content:"";position:absolute;inset:0;border-radius:inherit;
+    background:linear-gradient(160deg, var(--tint,transparent) 0%, transparent 42%);
+    opacity:.5;pointer-events:none;
+  }
+  .tile-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.85rem;position:relative}
+  .medallion{
+    width:48px;height:48px;border-radius:14px;
+    display:grid;place-items:center;font-size:1.45rem;
+    background:var(--mbg,var(--paper-warm));
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.6);
+  }
+  .chip{
+    font-size:.64rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+    padding:.32rem .58rem;border-radius:999px;line-height:1;white-space:nowrap;
+  }
+  .chip-asm{color:var(--asm);background:var(--asm-bg)}
+  .chip-bfm{color:var(--bfm);background:var(--bfm-bg)}
+  .chip-shared{color:var(--shared);background:var(--shared-bg)}
 
-    .title {
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--text-h);
-      letter-spacing: -0.4px;
-      margin-bottom: 4px;
-    }
+  .tile-title{
+    font-family:"Fraunces",serif;font-weight:600;
+    font-size:1.22rem;line-height:1.15;letter-spacing:-.01em;
+    margin-bottom:.3rem;position:relative;
+  }
+  .tile-desc{font-size:.84rem;color:var(--muted);line-height:1.45;position:relative;flex:1}
+  .go{
+    margin-top:.9rem;font-size:.8rem;font-weight:600;color:var(--terra);
+    display:inline-flex;align-items:center;gap:.35rem;position:relative;
+  }
+  .go .arrow{transition:transform .28s ease}
 
-    .tagline {
-      font-size: 14px;
-      color: var(--text-dim);
-    }
+  /* live tile interactions */
+  @media (hover:hover){
+    .tile.live:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);border-color:rgba(224,122,62,.35)}
+    .tile.live:hover .arrow{transform:translateX(4px)}
+  }
+  .tile.live:active{transform:translateY(-1px)}
+  .tile:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
-    .info-bar {
-      width: 100%;
-      max-width: 520px;
-      padding: 0 16px;
-    }
+  /* coming soon */
+  .tile.soon{cursor:default;box-shadow:10px 16px 38px -30px rgba(120,72,24,.4)}
+  .tile.soon .medallion{filter:grayscale(.25);opacity:.85}
+  .tile.soon .tile-title,.tile.soon .tile-desc{opacity:.78}
+  .tile.soon .go{color:var(--muted)}
 
-    .info-card {
-      background: var(--bg-card);
-      border: 1.5px solid var(--border);
-      border-radius: 20px;
-      padding: 16px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
-    }
+  footer{
+    text-align:center;margin-top:clamp(30px,6vw,46px);
+    font-size:.78rem;color:var(--muted);
+  }
+  footer .heart{color:var(--terra)}
 
-    .date-time .date {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text-h);
-    }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
-    .date-time .time {
-      font-size: 13px;
-      color: var(--text-dim);
-      margin-top: 3px;
-    }
-
-    .weather-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-align: right;
-    }
-
-    .weather-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: var(--sun-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-
-    .weather-temp {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--text-h);
-    }
-
-    .weather-desc {
-      font-size: 12px;
-      color: var(--text-dim);
-      margin-top: 2px;
-    }
-
-    .section-label {
-      width: 100%;
-      max-width: 520px;
-      padding: 26px 20px 10px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-    }
-
-    .links-grid {
-      width: 100%;
-      max-width: 520px;
-      padding: 0 16px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .app-card {
-      background: var(--bg-card);
-      border: 1.5px solid var(--border);
-      border-radius: 18px;
-      padding: 16px;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 14px;
-      min-height: 132px;
-      transition: transform 0.13s ease, border-color 0.13s ease, box-shadow 0.13s ease;
-      cursor: pointer;
-      color: inherit;
-    }
-
-    .app-card:active { transform: scale(0.98); }
-
-    @media (hover: hover) {
-      .app-card:hover {
-        border-color: var(--border-md);
-        box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-        transform: translateY(-1px);
-      }
-    }
-
-    .app-card.live-amber { border-color: var(--amber-bdr); }
-    .app-card.live-green { border-color: var(--green-bdr); }
-
-    @media (hover: hover) {
-      .app-card.live-amber:hover { border-color: var(--sun); }
-      .app-card.live-green:hover { border-color: var(--green); }
-    }
-
-    .card-pill {
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-
-    .pill-amber  { background: var(--sun-light); }
-    .pill-green  { background: var(--green-bg); }
-    .pill-teal   { background: var(--teal-bg); }
-    .pill-blue   { background: var(--blue-bg); }
-    .pill-rose   { background: var(--rose-bg); }
-    .pill-purple { background: var(--purple-bg); }
-
-    .card-body {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      width: 100%;
-    }
-
-    .card-title {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text-h);
-      line-height: 1.35;
-    }
-
-    .card-sub {
-      font-size: 12px;
-      color: var(--text-dim);
-      line-height: 1.45;
-    }
-
-    .card-badge {
-      margin-top: auto;
-      font-size: 11px;
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: 20px;
-      background: #f0f0f4;
-      color: var(--text-dim);
-    }
-
-    .card-badge.live-amber {
-      background: var(--sun-light);
-      color: var(--amber);
-    }
-
-    .card-badge.live-green {
-      background: var(--green-bg);
-      color: var(--green);
-    }
-  </style>
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .tile{opacity:1;transform:none}
+  }
+</style>
 </head>
 <body>
 
-  <div class="header">
-    <div class="sun-wrap">
-      <svg width="36" height="36" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="28" cy="28" r="11" fill="#f5a623"/>
-        <g stroke="#f5a623" stroke-width="2.5" stroke-linecap="round">
-          <line x1="28" y1="7"  x2="28" y2="13"/>
-          <line x1="28" y1="43" x2="28" y2="49"/>
-          <line x1="7"  y1="28" x2="13" y2="28"/>
-          <line x1="43" y1="28" x2="49" y2="28"/>
-          <line x1="14.5" y1="14.5" x2="18.5" y2="18.5"/>
-          <line x1="37.5" y1="37.5" x2="41.5" y2="41.5"/>
-          <line x1="41.5" y1="14.5" x2="37.5" y2="18.5"/>
-          <line x1="18.5" y1="37.5" x2="14.5" y2="41.5"/>
-        </g>
-      </svg>
-    </div>
-    <p class="eyebrow" id="js-greeting">Good morning</p>
-    <h1 class="title">Welcome, Andrew</h1>
-    <p class="tagline">Make today count.</p>
-  </div>
-
-  <div class="info-bar">
-    <div class="info-card">
-      <div class="date-time">
-        <div class="date" id="js-date">Thursday, 16 April 2026</div>
-        <div class="time" id="js-time">—</div>
-      </div>
-      <div class="weather-right">
-        <div class="weather-icon" id="js-wx-icon">☁️</div>
-        <div>
-          <div class="weather-temp" id="js-wx-temp">—°C</div>
-          <div class="weather-desc">Melbourne</div>
-        </div>
+  <header class="dawn">
+    <div class="sun" aria-hidden="true"></div>
+    <div class="hero">
+      <h1 class="greeting" id="greeting">Good morning</h1>
+      <p class="subline">Make today count.</p>
+      <div class="meta">
+        <span class="pill" id="date-pill"><b id="date">—</b></span>
+        <span class="pill" id="weather-pill"><span id="weather-icon">☀️</span> <b id="weather-temp">—</b><span id="weather-place" style="color:var(--muted);font-weight:400">Melbourne</span></span>
       </div>
     </div>
-  </div>
+  </header>
 
-  <div class="section-label">Your Programs</div>
+  <main>
+    <p class="section-label">Your programs</p>
+    <div class="grid" id="grid"></div>
+  </main>
 
-  <div class="links-grid">
-    <a class="app-card live-amber" href="https://asbfmckay.github.io/miracle-morning/">
-      <div class="card-pill pill-amber">🌅</div>
-      <div class="card-body">
-        <div class="card-title">Miracle Morning</div>
-        <div class="card-sub">SAVERS session, timer, affirmations and morning flow.</div>
-      </div>
-      <span class="card-badge live-amber"></span>
-    </a>
+<script>
+/* ---------- Tiles ---------- */
+const programs = [
+  { title:"Miracle Morning", owner:"ASM", icon:"🌅", tint:"rgba(245,166,35,.16)", mbg:"rgba(245,166,35,.16)",
+    desc:"SAVERS flow — silence, affirmations, visualising, exercise, reading, scribing.",
+    href:"https://asbfmckay.github.io/miracle-morning/" },
 
-    <a class="app-card" href="#" onclick="return false;">
-      <div class="card-pill pill-teal">🎯</div>
-      <div class="card-body">
-        <div class="card-title">Goal Tracker</div>
-        <div class="card-sub">Track progress and keep your priorities in view.</div>
-      </div>
-      <span class="card-badge">Coming soon</span>
-    </a>
+  { title:"Miracle Morning", owner:"BFM", icon:"🌅", tint:"rgba(224,105,154,.14)", mbg:"rgba(224,105,154,.16)",
+    desc:"Bronnia's own morning flow.", href:null },
 
-    <a class="app-card live-green" href="https://asbfmckay.github.io/workout-app/">
-      <div class="card-pill pill-green">💪</div>
-      <div class="card-body">
-        <div class="card-title">Workout Program</div>
-        <div class="card-sub">Training sessions, movement plan and daily consistency.</div>
-      </div>
-      <span class="card-badge live-green"></span>
-    </a>
+  { title:"Workout Program", owner:"ASM", icon:"🏋️", tint:"rgba(224,122,62,.16)", mbg:"rgba(224,122,62,.16)",
+    desc:"Strength splits and daily consistency.",
+    href:"https://asbfmckay.github.io/workout-app/" },
 
-    <a class="app-card" href="#" onclick="return false;">
-      <div class="card-pill pill-rose">📚</div>
-      <div class="card-body">
-        <div class="card-title">Reading Program</div>
-        <div class="card-sub">Reading lists, notes and structured growth.</div>
-      </div>
-      <span class="card-badge">Coming soon</span>
-    </a>
+  { title:"Workout Plan", owner:"BFM", icon:"🤸", tint:"rgba(224,105,154,.16)", mbg:"rgba(224,105,154,.16)",
+    desc:"XBX — ten basic exercises, twelve minutes a day.",
+    href:"https://asbfmckay.github.io/xbx-workout/" },
 
-    <a class="app-card" href="#" onclick="return false;">
-      <div class="card-pill pill-blue">🧠</div>
-      <div class="card-body">
-        <div class="card-title">Development Program</div>
-        <div class="card-sub">Personal development and focused improvement.</div>
-      </div>
-      <span class="card-badge">Coming soon</span>
-    </a>
+  { title:"Personal Prosperity Plan", owner:"Shared", icon:"✨", tint:"rgba(31,169,134,.14)", mbg:"rgba(31,169,134,.16)",
+    desc:"Plan, reset, goals, habits and money — all in one place.",
+    href:"https://asbfmckay.github.io/ppp/" },
 
-    <a class="app-card" href="#" onclick="return false;">
-      <div class="card-pill pill-teal">🌿</div>
-      <div class="card-body">
-        <div class="card-title">Health Program</div>
-        <div class="card-sub">Wellbeing habits, routines and health tracking.</div>
-      </div>
-      <span class="card-badge">Coming soon</span>
-    </a>
+  { title:"Health Program", owner:"Shared", icon:"🌿", tint:"rgba(91,165,91,.14)", mbg:"rgba(91,165,91,.18)",
+    desc:"Wellbeing habits, routines and health tracking.", href:null },
 
-    <a class="app-card" href="#" onclick="return false;">
-      <div class="card-pill pill-purple">✨</div>
-      <div class="card-body">
-        <div class="card-title">PPP</div>
-        
-        <div class="card-sub">Planning, reflection and purposeful daily action.</div>
-      </div>
-      <span class="card-badge">Coming soon</span>
-    </a>
-  </div>
+  { title:"Reading Program", owner:"ASM", icon:"📚", tint:"rgba(245,166,35,.12)", mbg:"rgba(201,138,43,.16)",
+    desc:"Reading lists, notes and structured growth.", href:null },
 
-  <script>
-    function updateClock() {
-      const now = new Date();
-      const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-      const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-      document.getElementById('js-date').textContent =
-        days[now.getDay()] + ', ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
-      const h = now.getHours(), m = now.getMinutes();
-      const ampm = h >= 12 ? 'pm' : 'am';
-      const h12 = h % 12 || 12;
-      document.getElementById('js-time').textContent =
-        h12 + ':' + String(m).padStart(2,'0') + ' ' + ampm + ' · Melbourne';
+  { title:"Reading Program", owner:"BFM", icon:"📖", tint:"rgba(224,105,154,.12)", mbg:"rgba(176,122,176,.18)",
+    desc:"Bronnia's reading lists and notes.", href:null },
+];
 
-      const greetEl = document.getElementById('js-greeting');
-      if (h >= 12 && h < 17) greetEl.textContent = 'Good afternoon';
-      else if (h >= 17) greetEl.textContent = 'Good evening';
-      else greetEl.textContent = 'Good morning';
-    }
-    updateClock();
-    setInterval(updateClock, 30000);
+const chipClass = { ASM:"chip-asm", BFM:"chip-bfm", Shared:"chip-shared" };
 
-    async function loadWeather() {
-      try {
-        const url = 'https://api.open-meteo.com/v1/forecast?latitude=-37.8136&longitude=144.9631&current=temperature_2m,weathercode&temperature_unit=celsius&timezone=Australia%2FMelbourne';
-        const res = await fetch(url);
-        const d = await res.json();
-        const temp = Math.round(d.current.temperature_2m);
-        const code = d.current.weathercode;
-        const icons = {
-          0:'☀️',1:'🌤️',2:'⛅',3:'☁️',
-          45:'🌫️',48:'🌫️',
-          51:'🌦️',53:'🌦️',55:'🌧️',
-          61:'🌧️',63:'🌧️',65:'🌧️',
-          71:'🌨️',73:'🌨️',75:'🌨️',
-          80:'🌦️',81:'🌦️',82:'🌧️',
-          95:'⛈️',96:'⛈️',99:'⛈️'
-        };
-        document.getElementById('js-wx-icon').textContent = icons[code] || '🌡️';
-        document.getElementById('js-wx-temp').textContent = temp + '°C';
-      } catch(e) {
-        document.getElementById('js-wx-temp').textContent = '—';
-      }
-    }
-    loadWeather();
-  </script>
+const grid = document.getElementById("grid");
+programs.forEach((p, i) => {
+  const live = !!p.href;
+  const el = document.createElement(live ? "a" : "div");
+  el.className = "tile " + (live ? "live" : "soon");
+  el.style.setProperty("--tint", p.tint);
+  el.style.animationDelay = (0.12 + i * 0.05) + "s";
+  if (live){ el.href = p.href; }
+
+  el.innerHTML = `
+    <div class="tile-top">
+      <span class="medallion" style="--mbg:${p.mbg}" aria-hidden="true">${p.icon}</span>
+      <span class="chip ${chipClass[p.owner]}">${p.owner}</span>
+    </div>
+    <h2 class="tile-title">${p.title}</h2>
+    <p class="tile-desc">${p.desc}</p>
+    <span class="go">${ live
+        ? 'Open <span class="arrow">→</span>'
+        : 'Coming soon' }</span>
+  `;
+  grid.appendChild(el);
+});
+
+/* ---------- Greeting + date ---------- */
+const now = new Date();
+const h = now.getHours();
+document.getElementById("greeting").textContent =
+  h < 12 ? "Good morning" : h < 17 ? "Good afternoon" : "Good evening";
+document.getElementById("date").textContent =
+  now.toLocaleDateString("en-AU", { weekday:"long", day:"numeric", month:"long", year:"numeric" });
+
+/* ---------- Live weather (Melbourne, Open-Meteo, no key) ---------- */
+const wmo = {
+  0:["☀️","Clear"],1:["🌤️","Mostly clear"],2:["⛅","Partly cloudy"],3:["☁️","Overcast"],
+  45:["🌫️","Fog"],48:["🌫️","Fog"],
+  51:["🌦️","Drizzle"],53:["🌦️","Drizzle"],55:["🌦️","Drizzle"],56:["🌦️","Drizzle"],57:["🌦️","Drizzle"],
+  61:["🌧️","Rain"],63:["🌧️","Rain"],65:["🌧️","Heavy rain"],66:["🌧️","Rain"],67:["🌧️","Rain"],
+  71:["🌨️","Snow"],73:["🌨️","Snow"],75:["🌨️","Snow"],77:["🌨️","Snow"],
+  80:["🌦️","Showers"],81:["🌦️","Showers"],82:["🌧️","Heavy showers"],
+  85:["🌨️","Snow showers"],86:["🌨️","Snow showers"],
+  95:["⛈️","Storms"],96:["⛈️","Storms"],99:["⛈️","Storms"]
+};
+fetch("https://api.open-meteo.com/v1/forecast?latitude=-37.8136&longitude=144.9631&current=temperature_2m,weather_code&timezone=auto")
+  .then(r => r.json())
+  .then(d => {
+    const c = d.current;
+    const [icon] = wmo[c.weather_code] || ["☀️","—"];
+    document.getElementById("weather-icon").textContent = icon;
+    document.getElementById("weather-temp").textContent = Math.round(c.temperature_2m) + "°C";
+  })
+  .catch(() => {
+    document.getElementById("weather-temp").textContent = "";
+    document.getElementById("weather-icon").textContent = "☀️";
+  });
+</script>
 </body>
 </html>
